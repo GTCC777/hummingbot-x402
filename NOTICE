@@ -1,0 +1,6 @@
+hummingbot-x402
+Copyright 2026 The Aslan Group LLC
+
+X402APIDataFeed derives from CustomAPIDataFeed in the Hummingbot project
+(https://github.com/hummingbot/hummingbot), licensed under the Apache License 2.0,
+Copyright Hummingbot Foundation.
