@@ -20,6 +20,11 @@ makes. The [PulseNetwork catalog](https://pulse.theaslangroupllc.com) has ~900
 machine-payable endpoints (funding, options greeks, FDIC/BLS/USGS/CFTC primitives, and
 more), and anything else speaking x402 works identically.
 
+New: a full **Hyperliquid** data lane — 24/7 stock/commodity/FX marks that keep pricing
+through weekends and overnight (HIP-3 perps), real-money event odds (the next FOMC
+decision, from HIP-4 outcome markets), native HyperCore lending rates, per-market
+mark-quality/oracle-divergence scores, and any wallet's live positions. See the table below.
+
 ## Install
 
 1. Copy `x402_api_data_feed.py` and `x402_fetcher.py` into your Hummingbot root
@@ -84,6 +89,11 @@ A complete runnable example is in [`scripts/x402_funding_signal_example.py`](scr
 | `cryptopulse…/api/funding-check?coin=ETH` | $0.02 | `markets.0.funding_annualized_pct` |
 | `cryptopulse…/api/funding-arb-scan` | $0.05 | `opportunities.0.spread_annualized_pct` |
 | `cryptopulse…/api/options-greeks?type=call&forward=…` | $0.02 | `greeks.delta` |
+| `cryptopulse…/api/equity-marks?symbol=TSLA` | $0.03 | `markets.0.mark_price` — stocks/commodities/FX **24/7, weekends included** |
+| `cryptopulse…/api/mark-quality?symbol=SKHX` | $0.03 | `markets.0.quality_score` — is this HIP-3 mark safe to trade? |
+| `cryptopulse…/api/lending-rates?token=USDC` | $0.03 | `reserves.0.supply_apr_pct` — native HyperCore lending yield |
+| `cryptopulse…/api/event-odds?q=fed` | $0.03 | `questions.0.outcomes.0.implied_probability` — real-money FOMC odds |
+| `cryptopulse…/api/whale-positions?address=0x…` | $0.03 | `net_skew` — any wallet's long/short lean |
 | `macropulse…/api/macro/bls-series?series=cpi` | $0.02 | `series.0.yoy_pct_change` |
 
 Full catalog: https://pulse.theaslangroupllc.com (all endpoints publish
